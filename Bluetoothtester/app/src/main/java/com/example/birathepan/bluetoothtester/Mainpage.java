@@ -1,18 +1,24 @@
 package com.example.birathepan.bluetoothtester;
 
 import android.bluetooth.BluetoothAdapter;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Mainpage extends AppCompatActivity {
 
@@ -24,6 +30,44 @@ public class Mainpage extends AppCompatActivity {
     public Button disconnect;
     public ImageView logo;
 
+    /*setter inn Broadcastreaciever informasjonen her nede */
+    BroadcastReceiver bluetoothState= new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            String previousStateextra = BluetoothAdapter.EXTRA_PREVIOUS_STATE;
+            String statextra = BluetoothAdapter.EXTRA_STATE;
+            int state = intent.getIntExtra(previousStateextra, -1);
+            //int previousstate = intent.getIntExtra(previousStateextra, -1);
+            String nytekst="";
+            switch (state) {
+                case (BluetoothAdapter.STATE_TURNING_ON): {
+                    nytekst = "Bluetooth is turning ON";
+                    Toast.makeText(Mainpage.this,nytekst,Toast.LENGTH_SHORT).show();
+                    setupUI();
+                    break;
+                }
+
+                case (BluetoothAdapter.STATE_ON): {
+                    nytekst = "Buetooth is ON";
+                    Toast.makeText(Mainpage.this,nytekst,Toast.LENGTH_SHORT).show();
+                    setupUI();
+                    break;
+                }
+                case (BluetoothAdapter.STATE_TURNING_OFF): {
+                    nytekst = "Bluetooth is turning OFF";
+                    Toast.makeText(Mainpage.this,nytekst,Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case (BluetoothAdapter.STATE_OFF): {
+                    nytekst = "Bluetooth is OFF";
+                    Toast.makeText(Mainpage.this,nytekst,Toast.LENGTH_SHORT).show();
+                    break;
+                }
+            }
+
+        }
+    };
 
 
     /*oncreate*/
@@ -32,7 +76,7 @@ public class Mainpage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainpage);
         setupUI();
-        };
+        }
 
     private void setupUI(){
         //henter referanser
@@ -41,34 +85,61 @@ public class Mainpage extends AppCompatActivity {
         final Button disconnect= (Button) findViewById(R.id.disconnectbutton);
         final ImageView logo=(ImageView) findViewById(R.id.logo);
         // setter en displayview
+        Log.e("message","You are in UI");
 
-        //connect.setVisibility(View.GONE);
-        //disconnect.setVisibility(View.GONE);
+        disconnect.setVisibility(View.GONE);
         logo.setVisibility(View.GONE);
+
+        btadapter = BluetoothAdapter.getDefaultAdapter();
+        if (btadapter.isEnabled()) {
+            String address = btadapter.getAddress();
+            String name = btadapter.getName();
+            String statusText = "Connected unit:" + name + " : " + address; //shows the connected unit
+            statusUpdate.setText(statusText);
+            disconnect.setVisibility(View.VISIBLE);
+            connect.setVisibility(View.INVISIBLE);
+
+
+
+
+
+
+        } else {
+            connect.setVisibility(View.VISIBLE);
+            statusUpdate.setText("Bluetooth is not connected!");
+
+
+
+
+        }
 
 
         connect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btadapter = BluetoothAdapter.getDefaultAdapter();
-                if (btadapter.isEnabled()) {
-                    String address = btadapter.getAddress();
-                    String name = btadapter.getName();
-                    String statusText = name + " : " + address;
-                    statusUpdate.setText(statusText);
+                String actionstatechanged= BluetoothAdapter.ACTION_STATE_CHANGED;
+                String actionRequestEnable= BluetoothAdapter.ACTION_REQUEST_ENABLE;
+                IntentFilter filter = new IntentFilter(actionstatechanged);
+                registerReceiver(bluetoothState, filter);
+                startActivityForResult(new Intent(actionRequestEnable),0);
 
-                } else {
-                    statusUpdate.setText("Pls connect me :(");
+                //refresh
+                Intent intent=getIntent();
+                startActivity(intent);
+
                 }
+        });
 
-
-            }
-        });// slutt på connect onclicklistener
+        // slutt på connect onclicklistener
 
         disconnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                btadapter.disable();
+                disconnect.setVisibility(View.GONE);
+                logo.setVisibility(View.GONE);
+                connect.setVisibility(View.VISIBLE);
+                statusUpdate.setText("Bluetooth is off");
             }
         }); // slutt på disconnect onclicklistener
 

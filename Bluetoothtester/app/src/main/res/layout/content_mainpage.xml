@@ -19,7 +19,7 @@
         android:id="@+id/connectbutton"
         android:layout_below="@+id/result"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_alignParentStart="false"
         android:layout_marginTop="116dp" />
 
     <Button
@@ -34,10 +34,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="A magical text will appear here, to tell if youre connected to bluetooth or not ;)"
+        android:text="Text to confirm bluetooth connection.This text is not supposed to be seen in the app. You cant see me -Jhon Cena"
         android:id="@+id/result"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <ImageView
         android:layout_width="wrap_content"
