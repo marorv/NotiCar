@@ -28,6 +28,7 @@ public class Mainpage extends AppCompatActivity {
     public TextView statusUpdate;
     public Button connect;
     public Button disconnect;
+    protected static final int Discovery_request=1; //1 er for true, 0 false
     //public ImageView logo;
 
     /*setter inn Broadcastreaciever informasjonen her nede */
@@ -70,6 +71,8 @@ public class Mainpage extends AppCompatActivity {
     };
 
 
+
+
     /*oncreate*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +103,12 @@ public class Mainpage extends AppCompatActivity {
             statusUpdate.setText(statusText);
             disconnect.setVisibility(View.VISIBLE);
             connect.setVisibility(View.INVISIBLE);
+
+
+            //Går til neste activity for å se etter tilgjengelige enheter
+            startActivity(new Intent(getApplicationContext(),searchactivity.class));
+
+
         } else {
             connect.setVisibility(View.VISIBLE);
             statusUpdate.setText("Bluetooth is not connected!");
@@ -109,40 +118,53 @@ public class Mainpage extends AppCompatActivity {
         connect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Denne koden slår bare bluetooth av og på
+                /*
                 String actionstatechanged= BluetoothAdapter.ACTION_STATE_CHANGED;
                 String actionRequestEnable= BluetoothAdapter.ACTION_REQUEST_ENABLE;
                 IntentFilter filter = new IntentFilter(actionstatechanged);
                 registerReceiver(bluetoothState, filter);
                 startActivityForResult(new Intent(actionRequestEnable),0);
+                */
+
+                //Denne koden ser etter enheter og slår på bluetooth
+                String scanmodechanged = BluetoothAdapter.ACTION_SCAN_MODE_CHANGED;
+                String bediscoverable = BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE;
+                IntentFilter filter = new IntentFilter(scanmodechanged);
+                registerReceiver(bluetoothState, filter);
+                startActivityForResult(new Intent(bediscoverable), Discovery_request);
+
 
                 //refresh
-                Intent intent=getIntent();
+                Intent intent = getIntent();
                 startActivity(intent);
+            }
 
-                }
         });
-
-        // slutt på connect onclicklistener
 
         disconnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 btadapter.disable();
                 disconnect.setVisibility(View.GONE);
-              //  logo.setVisibility(View.GONE);
+                //  logo.setVisibility(View.GONE);
                 connect.setVisibility(View.VISIBLE);
                 statusUpdate.setText("Bluetooth is off");
             }
-        }); // slutt på disconnect onclicklistener
+        });
+
+    }//endsetupUI
 
 
+    protected void onActivityResult(int requestcode,int resulcode,Intent data){
+        if(requestcode == Discovery_request){
+            requestcode=1;
+            Toast.makeText(Mainpage.this, "Discovery in Progress!!!!!!!!!!!!!!!!", Toast.LENGTH_LONG).show();
+            setupUI();
+            //findDevices();
 
-
-
-
-
-
-    }
+        }
+    };
 
 
     @Override
