@@ -28,7 +28,7 @@ public class Mainpage extends AppCompatActivity {
     public TextView statusUpdate;
     public Button connect;
     public Button disconnect;
-    public ImageView logo;
+    //public ImageView logo;
 
     /*setter inn Broadcastreaciever informasjonen her nede */
     BroadcastReceiver bluetoothState= new BroadcastReceiver() {
@@ -83,12 +83,14 @@ public class Mainpage extends AppCompatActivity {
         final TextView statusUpdate =(TextView) findViewById(R.id.result);
         final Button connect =(Button) findViewById(R.id.connectbutton);
         final Button disconnect= (Button) findViewById(R.id.disconnectbutton);
-        final ImageView logo=(ImageView) findViewById(R.id.logo);
+       // final ImageView logo=(ImageView) findViewById(R.id.logo);
+
         // setter en displayview
         Log.e("message","You are in UI");
 
+
         disconnect.setVisibility(View.GONE);
-        logo.setVisibility(View.GONE);
+        //logo.setVisibility(View.GONE);
 
         btadapter = BluetoothAdapter.getDefaultAdapter();
         if (btadapter.isEnabled()) {
@@ -98,19 +100,9 @@ public class Mainpage extends AppCompatActivity {
             statusUpdate.setText(statusText);
             disconnect.setVisibility(View.VISIBLE);
             connect.setVisibility(View.INVISIBLE);
-
-
-
-
-
-
         } else {
             connect.setVisibility(View.VISIBLE);
             statusUpdate.setText("Bluetooth is not connected!");
-
-
-
-
         }
 
 
@@ -137,7 +129,7 @@ public class Mainpage extends AppCompatActivity {
             public void onClick(View v) {
                 btadapter.disable();
                 disconnect.setVisibility(View.GONE);
-                logo.setVisibility(View.GONE);
+              //  logo.setVisibility(View.GONE);
                 connect.setVisibility(View.VISIBLE);
                 statusUpdate.setText("Bluetooth is off");
             }
