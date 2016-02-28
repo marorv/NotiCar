@@ -69,10 +69,6 @@ public class Mainpage extends AppCompatActivity {
 
         }
     };
-
-
-
-
     /*oncreate*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,8 +109,6 @@ public class Mainpage extends AppCompatActivity {
             connect.setVisibility(View.VISIBLE);
             statusUpdate.setText("Bluetooth is not connected!");
         }
-
-
         connect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,7 +128,6 @@ public class Mainpage extends AppCompatActivity {
                 registerReceiver(bluetoothState, filter);
                 startActivityForResult(new Intent(bediscoverable), Discovery_request);
 
-
                 //refresh
                 Intent intent = getIntent();
                 startActivity(intent);
@@ -142,6 +135,7 @@ public class Mainpage extends AppCompatActivity {
 
         });
 
+        //denne trengs egentlig ikke siden vi trenger bare å slå på bluetooth
         disconnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -155,7 +149,6 @@ public class Mainpage extends AppCompatActivity {
 
     }//endsetupUI
 
-
     protected void onActivityResult(int requestcode,int resulcode,Intent data){
         if(requestcode == Discovery_request){
             requestcode=1;
@@ -165,7 +158,6 @@ public class Mainpage extends AppCompatActivity {
 
         }
     };
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

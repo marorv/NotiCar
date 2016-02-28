@@ -12,24 +12,26 @@
     tools:context="com.example.birathepan.bluetoothtester.Mainpage"
     tools:showIn="@layout/activity_mainpage">
 
+
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Connect"
         android:id="@+id/connectbutton"
-        android:layout_below="@+id/result"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="false"
-        android:layout_marginTop="116dp" />
+        android:background="@drawable/bluetoothlogo"
+        android:layout_below="@+id/disconnectbutton" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Disconnect"
         android:id="@+id/disconnectbutton"
-        android:layout_alignTop="@+id/connectbutton"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/result"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -38,5 +40,6 @@
         android:id="@+id/result"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>
