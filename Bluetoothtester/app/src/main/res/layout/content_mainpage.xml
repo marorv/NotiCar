@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:text="@string/Disconnect"
         android:id="@+id/disconnectbutton"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="43dp"
         android:layout_below="@+id/result"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
