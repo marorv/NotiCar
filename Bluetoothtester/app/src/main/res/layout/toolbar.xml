@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Skal teste ved å forandre på toolbars-->
+<!-- TEST!!!!!!!!-->
+<!--   https://www.youtube.com/watch?v=bcNZtonqhRw tutorial-->
+
+<android.support.v7.widget.Toolbar
+  xmlns_android="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/toolbar"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/colorPrimaryDark"
+  android:elevation="5dp"
+  app.theme="@style/ThemeOverlay.AppCompat.Dark"
+
+  xmlns:android="http://schemas.android.com/apk/res/android" />

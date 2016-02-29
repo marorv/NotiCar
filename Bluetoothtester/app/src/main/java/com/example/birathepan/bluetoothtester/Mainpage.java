@@ -82,7 +82,6 @@ public class Mainpage extends AppCompatActivity {
         final TextView statusUpdate =(TextView) findViewById(R.id.result);
         final Button connect =(Button) findViewById(R.id.connectbutton);
         final Button disconnect= (Button) findViewById(R.id.disconnectbutton);
-       // final ImageView logo=(ImageView) findViewById(R.id.logo);
 
         // setter en displayview
         Log.e("message","You are in UI");
@@ -155,13 +154,14 @@ public class Mainpage extends AppCompatActivity {
 
     protected void onActivityResult(int requestcode,int resulcode,Intent data){
         if(requestcode == Discovery_request){
-            requestcode=1;
-            Toast.makeText(Mainpage.this, "Discovery in Progress!!!!!!!!!!!!!!!!", Toast.LENGTH_LONG).show();
+
+            //requestcode=1;
+            Toast.makeText(Mainpage.this, "Discovery on temp..", Toast.LENGTH_LONG).show();
             setupUI();
             //findDevices();
 
         }
-    };
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
