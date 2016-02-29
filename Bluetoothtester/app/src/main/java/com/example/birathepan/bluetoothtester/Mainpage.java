@@ -29,7 +29,7 @@ public class Mainpage extends AppCompatActivity {
     public Button connect;
     public Button disconnect;
     protected static final int Discovery_request=1; //1 er for true, 0 false
-    //public ImageView logo;
+
 
     /*setter inn Broadcastreaciever informasjonen her nede */
     BroadcastReceiver bluetoothState= new BroadcastReceiver() {
@@ -89,7 +89,6 @@ public class Mainpage extends AppCompatActivity {
 
 
         disconnect.setVisibility(View.GONE);
-        //logo.setVisibility(View.GONE);
 
         btadapter = BluetoothAdapter.getDefaultAdapter();
         if (btadapter.isEnabled()) {
@@ -107,7 +106,8 @@ public class Mainpage extends AppCompatActivity {
 
         } else {
             connect.setVisibility(View.VISIBLE);
-            statusUpdate.setText("Bluetooth is not connected!");
+            statusUpdate.setText("Bluetooth is not turned on!");
+
         }
         connect.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,6 +136,7 @@ public class Mainpage extends AppCompatActivity {
         });
 
         //denne trengs egentlig ikke siden vi trenger bare å slå på bluetooth
+        //funksjonen her er å slå av bluetooth og gå ut av appen
         disconnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -144,6 +145,9 @@ public class Mainpage extends AppCompatActivity {
                 //  logo.setVisibility(View.GONE);
                 connect.setVisibility(View.VISIBLE);
                 statusUpdate.setText("Bluetooth is off");
+
+
+                finish();
             }
         });
 
