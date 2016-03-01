@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text=""
+            android:text="@string/Looking"
             android:id="@+id/textView"
             android:layout_gravity="center_horizontal" />
 
@@ -42,7 +42,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Next"
+            android:text="@string/Next"
             android:id="@+id/nextButton"
             android:layout_gravity="right" />
     </LinearLayout>
