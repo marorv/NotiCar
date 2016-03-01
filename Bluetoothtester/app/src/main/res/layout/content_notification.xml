@@ -10,6 +10,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.birathepan.bluetoothtester.notification"
-    tools:showIn="@layout/activity_notification">
+    tools:showIn="@layout/activity_notification"
+    android:background="@drawable/orangetheme"
+    >
 
 </RelativeLayout>
+
+<!-- denne siden er ment for å logge inn for å bekrefte brukeren -->
+
+
+
