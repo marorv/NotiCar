@@ -4,5 +4,6 @@
     <string name="Connect">Connect</string>
     <string name="Disconnect">Disconnect</string>
     <string name="title_activity_searchactivity">searchactivity</string>
-    <string name="title_activity_notification">notification</string>
+    <string name="Next">Next</string>
+    <string name="Looking">Looking for devices...</string>
 </resources>
