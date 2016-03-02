@@ -19,27 +19,33 @@
     <EditText
         android:id="@+id/brukernavn"
         android:layout_width="350dp"
-        android:layout_height="150dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="60dp"
+        android:layout_height="100dp"
         android:hint="Username"
-        />
+        android:inputType="textPersonName"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="67dp" />
 
     <EditText
         android:id="@+id/passord"
         android:layout_width="350dp"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:inputType="textPassword"
-        android:layout_below="@+id/brukernavn"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="52dp"
         android:hint="Password"
-        />
+        android:layout_below="@+id/brukernavn"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
-
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:text="Confirm"
+        android:id="@+id/confirmuser"
+        android:layout_below="@+id/passord"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="82dp"
+        android:onClick="login" />
 
 
 </RelativeLayout>
