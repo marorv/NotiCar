@@ -25,11 +25,14 @@ public class Loginpage extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(),searchactivity.class));
         } else {
             //Sender til neste vindu
-            Toast.makeText(getApplicationContext(),"Wrong password, please try again", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Wrong password or username, please try again", Toast.LENGTH_LONG).show();
         }
     }
 
-
+    //leave the app #bratti
+    public void exit(View view) {
+        finish();
+    }
 
 
 

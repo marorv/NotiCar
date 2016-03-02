@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 public class Mainpage extends AppCompatActivity {
 
-
+    //#bratti
     /** Kalt når activity er først laget **/
     private BluetoothAdapter btadapter;
     public TextView statusUpdate;
@@ -77,6 +77,7 @@ public class Mainpage extends AppCompatActivity {
         setupUI();
         }
 
+    //#bratti
     private void setupUI(){
         //henter referanser
         final TextView statusUpdate =(TextView) findViewById(R.id.result);
