@@ -26,8 +26,8 @@
             android:label="@string/title_activity_searchactivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".notification"
-            android:label="@string/title_activity_notification"
+            android:name=".Loginpage"
+            android:label="@string/title_activity_loginpage"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

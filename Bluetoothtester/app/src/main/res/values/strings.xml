@@ -5,4 +5,5 @@
     <string name="Disconnect">Disconnect</string>
     <string name="title_activity_searchactivity">searchactivity</string>
     <string name="title_activity_notification">notification</string>
+    <string name="title_activity_loginpage">Loginpage</string>
 </resources>
