@@ -30,20 +30,20 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/Looking"
-            android:id="@+id/textView"
+            android:text="@string/Status"
+            android:id="@+id/statusText"
             android:layout_gravity="center_horizontal" />
 
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="390dp"
-            android:id="@+id/listView" />
+            android:id="@+id/deviceList" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Next"
-            android:id="@+id/nextButton"
+            android:text="@string/Ok"
+            android:id="@+id/okButton"
             android:layout_gravity="right" />
     </LinearLayout>
 </RelativeLayout>
