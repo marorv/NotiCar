@@ -14,8 +14,11 @@ public class Loginpage extends AppCompatActivity {
 
 
     //validerer input og sender til neste side hvis riktig #bratti
+
+    /*
     EditText username = (EditText)findViewById(R.id.brukernavn);
     EditText password = (EditText)findViewById(R.id.passord);
+
 
     public void login(View view) {
         if (username.getText().toString().equals("Birathepan") && password.getText().toString().equals("bratti")) {
@@ -27,7 +30,7 @@ public class Loginpage extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Wrong password, please try again", Toast.LENGTH_LONG).show();
         }
     }
-
+*/
 
 
     @Override
