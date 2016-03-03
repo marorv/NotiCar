@@ -5,7 +5,7 @@
     <string name="Disconnect">Disconnect</string>
     <string name="title_activity_searchactivity">searchactivity</string>
     <string name="Ok">Ok</string>
-    <string name="Status">Looking for devices...</string>
+    <string name="Status">Status...</string>
     <string name="title_activity_notification">notification</string>
     <string name="title_activity_loginpage">Loginpage</string>
 

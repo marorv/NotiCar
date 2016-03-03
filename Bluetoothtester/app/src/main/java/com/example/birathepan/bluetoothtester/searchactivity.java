@@ -8,12 +8,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
 
 import java.util.Set;
 
@@ -32,16 +32,19 @@ public class searchactivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searchactivity);
-        final TextView statusText = (TextView) findViewById(R.id.statusText);
-        final ListView deviceList = (ListView) findViewById(R.id.deviceList);
-        final Button okButton = (Button) findViewById(R.id.okButton);
+        statusText = (TextView) findViewById(R.id.statusText);
+        deviceList = (ListView) findViewById(R.id.deviceList);
+        okButton = (Button) findViewById(R.id.okButton);
+        btAdapter = BluetoothAdapter.getDefaultAdapter();
         okButton.setVisibility(View.GONE);
-        statusText.setVisibility(View.GONE);
-        deviceList.setVisibility(View.GONE);
-        deviceListAdapter = new ArrayAdapter<String>(this, R.layout.content_searchactivity, 0);
+        statusText.setVisibility(View.VISIBLE);
+        deviceList.setVisibility(View.VISIBLE);
+        deviceListAdapter = new ArrayAdapter<>(this, R.layout.content_searchactivity, 0);
         deviceList.setAdapter(deviceListAdapter);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        discoverPairedDevices();
+        //discoverNonPairedDevices();
     }
 
     private void discoverPairedDevices() {
@@ -51,6 +54,9 @@ public class searchactivity extends AppCompatActivity {
             for (BluetoothDevice device: pairedDevices) {
                 deviceListAdapter.add(device.getName() + "\n" + device.getAddress());
             }
+        }
+        else {
+            statusText.setText("No paired devices found...");
         }
     }
 
@@ -70,21 +76,6 @@ public class searchactivity extends AppCompatActivity {
         };
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         registerReceiver(bReceiver, filter);
-        btAdapter.cancelDiscovery();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if(btAdapter.isEnabled()) {
-            statusText.setText("Ready to start discovery");
-            discoverPairedDevices();
-            discoverNonPairedDevices();
-        }
-        else {
-            statusText.setText("Bluetooth not enabled?");
-            onStop();
-        }
     }
 
 
@@ -97,6 +88,7 @@ public class searchactivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        btAdapter.cancelDiscovery();
         unregisterReceiver(bReceiver);
     }
 }
