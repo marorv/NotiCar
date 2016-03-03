@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.birathepan.bluetoothtester.Loginpage"
+    tools:showIn="@layout/activity_loginpage"
+    android:background="@drawable/orangetheme"
+    >
+
+
+
+    <EditText
+        android:id="@+id/brukernavn"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="67dp" />
+
+    <EditText
+        android:id="@+id/passord"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:inputType="textPassword"
+        android:hint="Password"
+        android:layout_below="@+id/brukernavn"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:text="Confirm"
+        android:id="@+id/confirmuser"
+        android:layout_marginTop="85dp"
+        android:onClick="login"
+        android:layout_below="@+id/passord"
+        android:layout_alignLeft="@+id/passord"
+        android:layout_alignStart="@+id/passord" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:text="Exit"
+        android:id="@+id/exitfromapp"
+        android:onClick="exit"
+        android:layout_alignTop="@+id/confirmuser"
+        android:layout_alignRight="@+id/passord"
+        android:layout_alignEnd="@+id/passord" />
+
+
+</RelativeLayout>

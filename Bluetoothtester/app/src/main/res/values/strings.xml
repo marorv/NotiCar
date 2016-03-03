@@ -8,4 +8,5 @@
     <string name="Status">Looking for devices...</string>
     <string name="title_activity_notification">notification</string>
     <string name="title_activity_loginpage">Loginpage</string>
+
 </resources>
