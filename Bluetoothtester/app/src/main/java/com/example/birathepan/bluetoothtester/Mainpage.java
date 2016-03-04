@@ -112,21 +112,15 @@ public class Mainpage extends AppCompatActivity {
         connect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 //Denne koden slår bare bluetooth av og på
-                /*
                 String actionstatechanged= BluetoothAdapter.ACTION_STATE_CHANGED;
                 String actionRequestEnable= BluetoothAdapter.ACTION_REQUEST_ENABLE;
                 IntentFilter filter = new IntentFilter(actionstatechanged);
                 registerReceiver(bluetoothState, filter);
                 startActivityForResult(new Intent(actionRequestEnable),0);
-                */
 
-                //Denne koden ser etter enheter og slår på bluetooth
-                String scanmodechanged = BluetoothAdapter.ACTION_SCAN_MODE_CHANGED;
-                String bediscoverable = BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE;
-                IntentFilter filter = new IntentFilter(scanmodechanged);
-                registerReceiver(bluetoothState, filter);
-                startActivityForResult(new Intent(bediscoverable), Discovery_request);
 
                 //refresh
                 Intent intent = getIntent();
