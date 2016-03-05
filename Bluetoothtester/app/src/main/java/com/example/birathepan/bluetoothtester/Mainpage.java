@@ -123,8 +123,11 @@ public class Mainpage extends AppCompatActivity {
 
 
                 //refresh
+                /*
                 Intent intent = getIntent();
                 startActivity(intent);
+                */
+
             }
 
         });
