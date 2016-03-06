@@ -11,26 +11,28 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.birathepan.bluetoothtester.Mainpage"
     tools:showIn="@layout/activity_mainpage"
-    android:background="@drawable/orangetheme"
+    android:background="@color/darkgrey"
     >
 
+
     //#bratti
+
     <Button
         android:layout_width="350dp"
         android:layout_height="300dp"
         android:id="@+id/connectbutton"
         android:background="@drawable/bluetoothlogo"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignTop="@+id/disconnectbutton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 
     <Button
         android:layout_width="350dp"
         android:layout_height="300dp"
         android:id="@+id/disconnectbutton"
         android:background="@drawable/offbutton"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentTop="true" />
 
 
 
@@ -39,8 +41,18 @@
         android:layout_height="wrap_content"
         android:text="Text to confirm bluetooth connection.This text is not supposed to be seen in the app."
         android:id="@+id/result"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/connectbutton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/test"
+        android:layout_below="@+id/result"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="58dp" />
 
 
 </RelativeLayout>

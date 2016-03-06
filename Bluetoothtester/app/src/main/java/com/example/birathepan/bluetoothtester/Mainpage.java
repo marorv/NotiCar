@@ -96,7 +96,7 @@ public class Mainpage extends AppCompatActivity {
             String name = btadapter.getName();
             String statusText = "Connected unit:" + name + " : " + address; //shows the connected unit
             statusUpdate.setText(statusText);
-            disconnect.setVisibility(View.VISIBLE);
+            disconnect.setVisibility(View.INVISIBLE);//test
             connect.setVisibility(View.INVISIBLE);
 
 
