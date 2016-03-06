@@ -25,9 +25,6 @@ public class Mainpage extends AppCompatActivity {
     //#bratti
     /** Kalt når activity er først laget **/
     private BluetoothAdapter btadapter;
-    public TextView statusUpdate;
-    public Button connect;
-    public Button disconnect;
     protected static final int Discovery_request=1; //1 er for true, 0 false
 
 
@@ -66,7 +63,6 @@ public class Mainpage extends AppCompatActivity {
                     break;
                 }
             }
-
         }
     };
     /*oncreate*/
@@ -81,11 +77,12 @@ public class Mainpage extends AppCompatActivity {
     private void setupUI(){
         //henter referanser
         final TextView statusUpdate =(TextView) findViewById(R.id.result);
-        final Button connect =(Button) findViewById(R.id.connectbutton);
         final Button disconnect= (Button) findViewById(R.id.disconnectbutton);
+        final Button connect2=(Button) findViewById(R.id.connectbutton2);
+        final ImageView bilde=(ImageView) findViewById(R.id.imageView);
 
         // setter en displayview
-        Log.e("message","You are in UI");
+        Log.e("message", "You are in UI");
 
 
         disconnect.setVisibility(View.GONE);
@@ -94,39 +91,43 @@ public class Mainpage extends AppCompatActivity {
         if (btadapter.isEnabled()) {
             String address = btadapter.getAddress();
             String name = btadapter.getName();
-            String statusText = "Connected unit:" + name + " : " + address; //shows the connected unit
+            String statusText = "Connected unit: \n" + name;
+            //shows the connected unit.Skriv inn address til slutt for å få addressen til enheten på statustext.
             statusUpdate.setText(statusText);
-            disconnect.setVisibility(View.INVISIBLE);//test
-            connect.setVisibility(View.INVISIBLE);
+            disconnect.setVisibility(View.VISIBLE);
+            connect2.setVisibility(View.INVISIBLE);
+            bilde.setVisibility(View.INVISIBLE);
+
 
 
             //Går til neste activity for å se etter tilgjengelige enheter
-            startActivity(new Intent(getApplicationContext(),Loginpage.class));
+            startActivity(new Intent(getApplicationContext(), Loginpage.class));
 
 
         } else {
-            connect.setVisibility(View.VISIBLE);
-            statusUpdate.setText("Bluetooth is not turned on!");
+            connect2.setVisibility(View.VISIBLE);
+            statusUpdate.setText("Make sure Bluetooth is turned on");
 
         }
-        connect.setOnClickListener(new View.OnClickListener() {
+
+
+        connect2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
                 //Denne koden slår bare bluetooth av og på
-                String actionstatechanged= BluetoothAdapter.ACTION_STATE_CHANGED;
-                String actionRequestEnable= BluetoothAdapter.ACTION_REQUEST_ENABLE;
+                String actionstatechanged = BluetoothAdapter.ACTION_STATE_CHANGED;
+                String actionRequestEnable = BluetoothAdapter.ACTION_REQUEST_ENABLE;
                 IntentFilter filter = new IntentFilter(actionstatechanged);
                 registerReceiver(bluetoothState, filter);
-                startActivityForResult(new Intent(actionRequestEnable),0);
+                startActivityForResult(new Intent(actionRequestEnable), 0);
 
 
                 //refresh
-                /*
                 Intent intent = getIntent();
                 startActivity(intent);
-                */
+
 
             }
 
@@ -138,9 +139,7 @@ public class Mainpage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 btadapter.disable();
-                disconnect.setVisibility(View.GONE);
-                //  logo.setVisibility(View.GONE);
-                connect.setVisibility(View.VISIBLE);
+                disconnect.setVisibility(View.VISIBLE);
                 statusUpdate.setText("Bluetooth is off");
 
 
