@@ -64,7 +64,6 @@
         android:layout_width="150px"
         android:layout_height="200px"
         android:id="@+id/noticar"
-        android:src="@drawable/noticar"
         android:layout_centerHorizontal="true" />
 
     <!--
