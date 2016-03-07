@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -52,13 +53,12 @@ public class searchactivity extends AppCompatActivity {
 
                 //Går til neste activity for å se etter tilgjengelige enheter
                 startActivity(new Intent(getApplicationContext(),status.class));
-
                 Toast.makeText(searchactivity.this, "Found this..", Toast.LENGTH_LONG).show();
             }
         });
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-        //discoverPairedDevices();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        discoverPairedDevices();
         discoverNonPairedDevices();
     }
 
@@ -89,7 +89,7 @@ public class searchactivity extends AppCompatActivity {
                 if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                     BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                     String deviceName = device.getName();
-                    if (deviceName==null){
+                   if (deviceName==null){
                         deviceName = "Unknown";
                     }
                     String deviceAddress = device.getAddress();
@@ -100,12 +100,6 @@ public class searchactivity extends AppCompatActivity {
         };
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         registerReceiver(bReceiver, filter);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        //startActivity(new Intent(getApplicationContext(), Mainpage.class));
     }
 
     @Override
