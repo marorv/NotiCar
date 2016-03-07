@@ -28,6 +28,10 @@
         <activity
             android:name=".Loginpage"
             android:label="@string/title_activity_loginpage"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".status"
+            android:label="@string/title_activity_status"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

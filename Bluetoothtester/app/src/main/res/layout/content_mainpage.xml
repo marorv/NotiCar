@@ -34,9 +34,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="Text to confirm bluetooth connection.This text is not supposed to be seen in the app."
         android:id="@+id/result"
-        android:gravity="center"
         android:layout_below="@+id/imageView"
         android:textColor="@color/white"
         android:textStyle="bold"

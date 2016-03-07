@@ -8,5 +8,6 @@
     <string name="Status">Status...</string>
     <string name="title_activity_notification">notification</string>
     <string name="title_activity_loginpage">Loginpage</string>
+    <string name="title_activity_status">status</string>
 
 </resources>

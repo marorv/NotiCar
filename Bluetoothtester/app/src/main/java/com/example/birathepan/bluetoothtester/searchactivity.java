@@ -49,6 +49,10 @@ public class searchactivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+
+                //Går til neste activity for å se etter tilgjengelige enheter
+                startActivity(new Intent(getApplicationContext(),status.class));
+
                 Toast.makeText(searchactivity.this, "Found this..", Toast.LENGTH_LONG).show();
             }
         });
