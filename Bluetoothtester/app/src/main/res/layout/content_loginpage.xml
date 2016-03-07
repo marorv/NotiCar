@@ -23,16 +23,17 @@
         android:hint="Username"
         android:inputType="textPersonName"
         android:layout_above="@+id/passord"
-        android:textCursorDrawable="@color/white"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="@color/white"
+        />
 
     <EditText
         android:id="@+id/passord"
         android:layout_width="350dp"
         android:layout_height="100dp"
         android:inputType="textPassword"
-        android:textCursorDrawable="@color/white"
+        android:textColor="@color/white"
         android:hint="Password"
         android:layout_above="@+id/confirmuser"
         android:layout_alignParentLeft="true"
@@ -60,9 +61,10 @@
         android:layout_alignParentStart="false" />
 
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="200dp"
+        android:layout_width="150px"
+        android:layout_height="200px"
         android:id="@+id/noticar"
+        android:src="@drawable/noticar"
         android:layout_centerHorizontal="true" />
 
     <!--
