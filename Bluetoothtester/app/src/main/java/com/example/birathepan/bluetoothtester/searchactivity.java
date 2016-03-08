@@ -12,7 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +27,6 @@ public class searchactivity extends AppCompatActivity {
 
     TextView statusText;
     ListView deviceListView;
-    Button okButton;
     TextView deviceText;
 
 
@@ -38,10 +36,8 @@ public class searchactivity extends AppCompatActivity {
         setContentView(R.layout.activity_searchactivity);
         statusText = (TextView) findViewById(R.id.statusText);
         deviceListView = (ListView) findViewById(R.id.deviceList);
-        okButton = (Button) findViewById(R.id.okButton);
         deviceText = (TextView) findViewById(R.id.deviceText);
         btAdapter = BluetoothAdapter.getDefaultAdapter();
-        okButton.setVisibility(View.GONE);
         statusText.setVisibility(View.VISIBLE);
         deviceListView.setVisibility(View.VISIBLE);
         deviceListAdapter = new ArrayAdapter<>(this, R.layout.simple_list_item);
@@ -52,12 +48,13 @@ public class searchactivity extends AppCompatActivity {
                                     int position, long id) {
 
                 //Går til neste activity for å se etter tilgjengelige enheter
-                startActivity(new Intent(getApplicationContext(),status.class));
+                startActivity(new Intent(getApplicationContext(), status.class));
                 Toast.makeText(searchactivity.this, "Found this..", Toast.LENGTH_LONG).show();
             }
         });
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         discoverPairedDevices();
         discoverNonPairedDevices();
     }
@@ -73,6 +70,7 @@ public class searchactivity extends AppCompatActivity {
                 deviceListAdapter.add(deviceName + "\n" + deviceAddress);
                 deviceListAdapter.notifyDataSetChanged();
             }
+            statusText.setText("Found paired devices...");
         }
         else {
             statusText.setText("No paired devices found...");
@@ -95,6 +93,7 @@ public class searchactivity extends AppCompatActivity {
                     String deviceAddress = device.getAddress();
                     deviceListAdapter.add(deviceName + "\n" + deviceAddress);
                     deviceListAdapter.notifyDataSetChanged();
+                    statusText.setText("Found unpaired devices...");
                 }
             }
         };
