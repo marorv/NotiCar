@@ -81,10 +81,6 @@ public class Mainpage extends AppCompatActivity {
         final Button connect2=(Button) findViewById(R.id.connectbutton2);
         final ImageView bilde=(ImageView) findViewById(R.id.imageView);
 
-        // setter en displayview
-        Log.e("message", "You are in UI");
-
-
         disconnect.setVisibility(View.GONE);
 
         btadapter = BluetoothAdapter.getDefaultAdapter();
@@ -97,7 +93,6 @@ public class Mainpage extends AppCompatActivity {
             disconnect.setVisibility(View.VISIBLE);
             connect2.setVisibility(View.INVISIBLE);
             bilde.setVisibility(View.INVISIBLE);
-
 
 
             //Går til neste activity for å se etter tilgjengelige enheter
