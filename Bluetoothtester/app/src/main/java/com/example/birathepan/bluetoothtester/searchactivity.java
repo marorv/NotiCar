@@ -12,7 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +27,6 @@ public class searchactivity extends AppCompatActivity {
 
     TextView statusText;
     ListView deviceListView;
-    Button okButton; // Do we need this one?
     TextView deviceText;
 
 
@@ -38,10 +36,8 @@ public class searchactivity extends AppCompatActivity {
         setContentView(R.layout.activity_searchactivity);
         statusText = (TextView) findViewById(R.id.statusText);
         deviceListView = (ListView) findViewById(R.id.deviceList);
-        okButton = (Button) findViewById(R.id.okButton);
         deviceText = (TextView) findViewById(R.id.deviceText);
         btAdapter = BluetoothAdapter.getDefaultAdapter();
-        okButton.setVisibility(View.GONE);
         statusText.setVisibility(View.VISIBLE);
         deviceListView.setVisibility(View.VISIBLE);
         deviceListAdapter = new ArrayAdapter<>(this, R.layout.simple_list_item);
@@ -58,7 +54,7 @@ public class searchactivity extends AppCompatActivity {
         });
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        
+
         discoverPairedDevices();
         discoverNonPairedDevices();
     }
