@@ -22,7 +22,6 @@ public class searchactivity extends AppCompatActivity {
 
     BluetoothAdapter btAdapter;
     BroadcastReceiver bReceiver;
-
     ArrayAdapter<String> deviceListAdapter;
 
     TextView statusText;
