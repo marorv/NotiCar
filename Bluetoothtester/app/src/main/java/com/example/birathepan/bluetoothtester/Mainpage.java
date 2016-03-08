@@ -101,7 +101,7 @@ public class Mainpage extends AppCompatActivity {
 
 
             //Går til neste activity for å se etter tilgjengelige enheter
-            startActivity(new Intent(getApplicationContext(), Loginpage.class));
+            startActivity(new Intent(getApplicationContext(), searchactivity.class));
 
 
         } else {
