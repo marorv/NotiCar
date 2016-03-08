@@ -26,38 +26,51 @@ public class searchactivity extends AppCompatActivity {
 
     TextView statusText;
     ListView deviceListView;
-    TextView deviceText;
+    //TextView deviceText;
 
-
+    // Kjøres idet searchactivity opprettes, initialiserer og setter opp klassen og view
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searchactivity);
         statusText = (TextView) findViewById(R.id.statusText);
         deviceListView = (ListView) findViewById(R.id.deviceList);
-        deviceText = (TextView) findViewById(R.id.deviceText);
+        //deviceText = (TextView) findViewById(R.id.deviceText);
         btAdapter = BluetoothAdapter.getDefaultAdapter();
         statusText.setVisibility(View.VISIBLE);
         deviceListView.setVisibility(View.VISIBLE);
+        // Trenger en adapter for å kunne fylle listView med tekststrenger
         deviceListAdapter = new ArrayAdapter<>(this, R.layout.simple_list_item);
         deviceListView.setAdapter(deviceListAdapter);
+        // Hvis et element i lista klikkes...
         deviceListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-
-                //Går til neste activity for å se etter tilgjengelige enheter
+                connect_to_device();
+                // Kan evt fjernes
+                Toast.makeText(searchactivity.this, "Connecting...", Toast.LENGTH_LONG).show();
+                // Går til neste activity --> vise status
                 startActivity(new Intent(getApplicationContext(), status.class));
-                Toast.makeText(searchactivity.this, "Found this..", Toast.LENGTH_LONG).show();
+
             }
         });
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // start søk etter enheter
         discoverPairedDevices();
         discoverNonPairedDevices();
     }
 
+    // Connect via bluetooth.socket, må finne ut om det er forskjell på paired og unpaired
+    // Skal bare kobles til en enhet?
+    private void connect_to_device() {
+
+    }
+
+    // Ser etter allerede paired enheter
+    // Lager en mengde av eksisterende enheter og legger dem til i listView
     private void discoverPairedDevices() {
         deviceListAdapter.clear();
         Set<BluetoothDevice> pairedDevices = btAdapter.getBondedDevices();
@@ -76,6 +89,11 @@ public class searchactivity extends AppCompatActivity {
         }
     }
 
+    // Søker etter tilgjengelige enheter i nærheten
+    // Må starte discovery først, og må avslutte i onDestroy
+    // Hvis enheter blir funnet blir de lagt til i listView (hvis navn på enheten er ukjent settes
+    // vises enheten som det)
+    // bReceiver brukes for å søke etter enheter, må avsluttes i onDestroy
     private void discoverNonPairedDevices() {
         deviceListAdapter.clear();
         btAdapter.startDiscovery();
@@ -100,6 +118,7 @@ public class searchactivity extends AppCompatActivity {
         registerReceiver(bReceiver, filter);
     }
 
+    // Kjøres når searchactivity avsluttes/går til neste activity
     @Override
     protected void onDestroy() {
         super.onDestroy();
