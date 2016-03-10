@@ -87,7 +87,7 @@ public class Mainpage extends AppCompatActivity {
         if (btadapter.isEnabled()) {
             String address = btadapter.getAddress();
             String name = btadapter.getName();
-            String statusText = "Connected unit: \n" + name;
+            String statusText = "Connected unit: \n" + name + "addrese:" +address;
             //shows the connected unit.Skriv inn address til slutt for å få addressen til enheten på statustext.
             statusUpdate.setText(statusText);
             disconnect.setVisibility(View.VISIBLE);
