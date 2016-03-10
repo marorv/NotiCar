@@ -49,7 +49,7 @@ public class searchactivity extends AppCompatActivity {
                                     int position, long id) {
                 connect_to_device();
                 // Kan evt fjernes
-                Toast.makeText(searchactivity.this, "Connecting...", Toast.LENGTH_LONG).show();
+                Toast.makeText(searchactivity.this, "Not connecting yet...", Toast.LENGTH_LONG).show();
                 // Går til neste activity --> vise status
                 startActivity(new Intent(getApplicationContext(), status.class));
 
