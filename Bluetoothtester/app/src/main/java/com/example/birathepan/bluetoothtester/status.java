@@ -15,6 +15,7 @@ public class status extends AppCompatActivity {
         vibrator.vibrate(1000); //10 seconds
 
     }
+    // YOYO
 
 
 
