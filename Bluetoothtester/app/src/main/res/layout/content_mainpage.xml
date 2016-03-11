@@ -45,13 +45,18 @@
         android:layout_alignEnd="@+id/disconnectbutton" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Turn on"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="20dp"
         android:id="@+id/connectbutton2"
-        android:layout_marginTop="49dp"
+        android:layout_marginTop="40dp"
         android:layout_below="@+id/result"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@color/lightblue"/>
+
 
     <ImageView
         android:layout_width="300dp"
@@ -59,7 +64,9 @@
         android:id="@+id/imageView"
         android:src="@drawable/bluetoothlogo"
         android:layout_alignTop="@+id/disconnectbutton"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+
+        />
 
 
 </RelativeLayout>
