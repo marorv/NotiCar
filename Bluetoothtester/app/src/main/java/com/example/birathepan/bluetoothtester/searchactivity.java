@@ -16,6 +16,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Method;
+import java.sql.Connection;
 import java.util.Set;
 
 public class searchactivity extends AppCompatActivity {
@@ -27,6 +29,8 @@ public class searchactivity extends AppCompatActivity {
     TextView statusText;
     ListView deviceListView;
     //TextView deviceText;
+    BluetoothDevice device;
+
 
     // Kjøres idet searchactivity opprettes, initialiserer og setter opp klassen og view
     @Override
@@ -47,14 +51,31 @@ public class searchactivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                connect_to_device();
+
+                //TODO Skal prøve å connecte til den valgte enheten her.
+
+                String object= deviceListAdapter.getItem(position);
+                String address= object.substring((object.length()-17));
+                device= btAdapter.getRemoteDevice(address);
+                connect_to_device(device);
+
+
+
                 // Kan evt fjernes
                 Toast.makeText(searchactivity.this, "Not connecting yet...", Toast.LENGTH_LONG).show();
+
+
+
+
+
+
                 // Går til neste activity --> vise status
                 startActivity(new Intent(getApplicationContext(), status.class));
 
             }
         });
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -63,9 +84,16 @@ public class searchactivity extends AppCompatActivity {
         discoverNonPairedDevices();
     }
 
+
     // Connect via bluetooth.socket, må finne ut om det er forskjell på paired og unpaired
     // Skal bare kobles til en enhet?
-    private void connect_to_device() {
+    private void connect_to_device(BluetoothDevice device) {
+        try {
+            Method method = device.getClass().getMethod("createBond", (Class[]) null);
+            method.invoke(device, (Object[]) null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -125,5 +153,10 @@ public class searchactivity extends AppCompatActivity {
         btAdapter.cancelDiscovery();
         unregisterReceiver(bReceiver);
     }
+
+
+
+
 }
+
 
