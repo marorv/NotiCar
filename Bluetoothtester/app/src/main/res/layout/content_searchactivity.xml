@@ -11,7 +11,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.birathepan.bluetoothtester.searchactivity"
     tools:showIn="@layout/activity_searchactivity"
-    android:background="@color/white"
+    android:background="@color/darkgrey"
     >
 
 
@@ -32,12 +32,15 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/Status"
             android:id="@+id/statusText"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             android:layout_gravity="center_horizontal" />
 
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="390dp"
-            android:id="@+id/deviceList" />
+            android:id="@+id/deviceList"
+            android:background="@color/darkgrey"/>
 
     </LinearLayout>
 </RelativeLayout>
