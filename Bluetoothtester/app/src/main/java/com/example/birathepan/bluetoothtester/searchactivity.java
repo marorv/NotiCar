@@ -2,6 +2,7 @@ package com.example.birathepan.bluetoothtester;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothServerSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.util.Set;
@@ -61,8 +63,7 @@ public class searchactivity extends AppCompatActivity {
 
 
 
-                // Kan evt fjernes
-                Toast.makeText(searchactivity.this, "Not connecting yet...", Toast.LENGTH_LONG).show();
+
 
 
 
@@ -153,6 +154,7 @@ public class searchactivity extends AppCompatActivity {
         btAdapter.cancelDiscovery();
         unregisterReceiver(bReceiver);
     }
+
 
 
 
