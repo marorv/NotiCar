@@ -39,29 +39,36 @@ public class Mainpage extends AppCompatActivity {
             //int previousstate = intent.getIntExtra(previousStateextra, -1);
             String nytekst="";
             switch (state) {
+
                 case (BluetoothAdapter.STATE_TURNING_ON): {
                     nytekst = "Bluetooth is turning ON";
-                    Toast.makeText(Mainpage.this,nytekst,Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(Mainpage.this,nytekst,Toast.LENGTH_SHORT).show();
                     setupUI();
                     break;
                 }
 
+
                 case (BluetoothAdapter.STATE_ON): {
                     nytekst = "Buetooth is ON";
-                    Toast.makeText(Mainpage.this,nytekst,Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(Mainpage.this,nytekst,Toast.LENGTH_SHORT).show();
                     setupUI();
                     break;
                 }
+
+                //Ikke nødvendig,men kan være greit å ha
+                /*
                 case (BluetoothAdapter.STATE_TURNING_OFF): {
                     nytekst = "Bluetooth is turning OFF";
                     Toast.makeText(Mainpage.this,nytekst,Toast.LENGTH_SHORT).show();
                     break;
                 }
+
                 case (BluetoothAdapter.STATE_OFF): {
                     nytekst = "Bluetooth is OFF";
                     Toast.makeText(Mainpage.this,nytekst,Toast.LENGTH_SHORT).show();
                     break;
                 }
+                */
             }
         }
     };
@@ -87,7 +94,7 @@ public class Mainpage extends AppCompatActivity {
         if (btadapter.isEnabled()) {
             String address = btadapter.getAddress();
             String name = btadapter.getName();
-            String statusText = "Connected unit: \n" + name + "addrese:" +address;
+            String statusText = "Connected unit: \n" + name + "address:" +address;
             //shows the connected unit.Skriv inn address til slutt for å få addressen til enheten på statustext.
             statusUpdate.setText(statusText);
             disconnect.setVisibility(View.VISIBLE);

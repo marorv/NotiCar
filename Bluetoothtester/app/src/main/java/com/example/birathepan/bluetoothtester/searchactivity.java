@@ -3,6 +3,7 @@ package com.example.birathepan.bluetoothtester;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothServerSocket;
+import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -10,9 +11,11 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,12 +24,18 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.util.Set;
+import java.util.UUID;
 
 public class searchactivity extends AppCompatActivity {
 
     BluetoothAdapter btAdapter;
     BroadcastReceiver bReceiver;
     ArrayAdapter<String> deviceListAdapter;
+
+    //bratti test
+    BluetoothSocket mmSocket;
+    UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb"); //Standard SerialPortService ID
+
 
     TextView statusText;
     ListView deviceListView;
@@ -38,6 +47,11 @@ public class searchactivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //testbratti
+        final Button testButton = (Button) findViewById(R.id.testbutton);
+
+
         setContentView(R.layout.activity_searchactivity);
         statusText = (TextView) findViewById(R.id.statusText);
         deviceListView = (ListView) findViewById(R.id.deviceList);
@@ -154,6 +168,41 @@ public class searchactivity extends AppCompatActivity {
         btAdapter.cancelDiscovery();
         unregisterReceiver(bReceiver);
     }
+
+    
+    /*
+
+    //brattitester
+    public void connectToBt(){
+        try {
+            mmSocket = device.createRfcommSocketToServiceRecord(uuid);
+
+            if (!mmSocket.isConnected()){
+                Log.e("Aquarium", "Not connected. Connecting");
+                mmSocket.connect();
+            } else {
+                Log.e("Aquarium", "Already connected");
+            }
+            //sendBtMsg("conn");
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            Log.e("Aquarium", "Failed to connect. Retrying");
+            connectToBt();
+        }
+    }
+
+    testButton.setOnClickListener(new View.OnClickListener() {
+        public void onClick(View v) {
+            Log.e("Aquarium", "Pressed connect button");
+            // Perform action on temp button click
+            connectToBt();
+        }
+    });
+
+*/
+
 
 
 
