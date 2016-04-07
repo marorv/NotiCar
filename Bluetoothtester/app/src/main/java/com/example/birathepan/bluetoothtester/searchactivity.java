@@ -48,8 +48,6 @@ public class searchactivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //testbratti
-        final Button testButton = (Button) findViewById(R.id.testbutton);
 
 
         setContentView(R.layout.activity_searchactivity);
@@ -169,39 +167,12 @@ public class searchactivity extends AppCompatActivity {
         unregisterReceiver(bReceiver);
     }
 
-    
-    /*
 
-    //brattitester
-    public void connectToBt(){
-        try {
-            mmSocket = device.createRfcommSocketToServiceRecord(uuid);
 
-            if (!mmSocket.isConnected()){
-                Log.e("Aquarium", "Not connected. Connecting");
-                mmSocket.connect();
-            } else {
-                Log.e("Aquarium", "Already connected");
-            }
-            //sendBtMsg("conn");
 
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            Log.e("Aquarium", "Failed to connect. Retrying");
-            connectToBt();
-        }
-    }
 
-    testButton.setOnClickListener(new View.OnClickListener() {
-        public void onClick(View v) {
-            Log.e("Aquarium", "Pressed connect button");
-            // Perform action on temp button click
-            connectToBt();
-        }
-    });
 
-*/
+
 
 
 
