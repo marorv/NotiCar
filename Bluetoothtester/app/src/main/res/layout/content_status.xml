@@ -12,36 +12,81 @@
     tools:showIn="@layout/activity_status"
     android:background="@color/darkgrey"
     >
-    <TextView
-        android:text="Hello World!"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tekst"
         android:id="@+id/btResult"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="115dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <!-- Car images -->
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:id="@+id/noredcar"
+        android:src="@drawable/transport"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:id="@+id/driverdoor"
+        android:src="@drawable/driver_door"
+        android:layout_alignTop="@+id/noredcar"
+        android:layout_toRightOf="@+id/btResult"
+        android:layout_toEndOf="@+id/btResult" />
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:id="@+id/frontpassenger"
+        android:src="@drawable/front_passenger"
+        android:layout_alignTop="@+id/noredcar"
+        android:layout_toRightOf="@+id/btResult"
+        android:layout_toEndOf="@+id/btResult" />
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:id="@+id/backleft"
+        android:src="@drawable/back_left"
+        android:layout_alignTop="@+id/noredcar"
+        android:layout_toRightOf="@+id/btResult"
+        android:layout_toEndOf="@+id/btResult" />
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:id="@+id/backright"
+        android:src="@drawable/back_right"
+        android:layout_alignTop="@+id/noredcar"
+        android:layout_toRightOf="@+id/btResult"
+        android:layout_toEndOf="@+id/btResult" />
 
 
-    <Button
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="vibrasjonsfunksjon"
-        android:id="@+id/vibrationbutton"
-        android:onClick="vibrate"
+        android:text="Status"
+        android:id="@+id/statustekstonscstreen"
+        android:layout_below="@id/noredcar"
+        android:textSize="20dp"
+        android:textStyle="bold"
+
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/Status"
+        android:id="@+id/status"
+        android:layout_below="@+id/statustekstonscstreen"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 
-
-
+        />
 
 
 </RelativeLayout>

@@ -25,12 +25,29 @@ import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.util.Set;
 import java.util.UUID;
+import java.util.*;
 
 public class searchactivity extends AppCompatActivity {
 
     BluetoothAdapter btAdapter;
     BroadcastReceiver bReceiver;
     ArrayAdapter<String> deviceListAdapter;
+
+    //testknapp
+    public void setTestknapp() {
+        final Button testknapp = (Button) findViewById(R.id.nestestate);
+        testknapp.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                startActivity(new Intent(getApplicationContext(), status.class));
+            }
+        });
+    }
+
+
+
+
+
 
     //bratti test
     BluetoothSocket mmSocket;
@@ -88,6 +105,8 @@ public class searchactivity extends AppCompatActivity {
             }
         });
 
+        //TODO dette er en test
+        setTestknapp();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
