@@ -36,37 +36,50 @@
         android:layout_marginBottom="57dp" />
 
     <!-- Car images -->
+
+
     <ImageView
-        android:layout_width="300dp"
-        android:layout_height="250dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/noredcar"
         android:src="@drawable/bil_LAAST"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/passenger"
         android:src="@drawable/bil_PASSENGER"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/whoisconnected"
-        android:layout_toRightOf="@+id/btResult"
-        android:layout_toEndOf="@+id/btResult" />
+        android:layout_alignParentStart="false" />
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/driver"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/bil_DRIVER"
+        android:layout_gravity="center" />
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/backright"
+        android:src="@drawable/bil_BACKRIGHT"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Status"
-        android:id="@+id/statustekstonscstreen"
-        android:layout_below="@id/noredcar"
-        android:textSize="20dp"
-        android:textStyle="bold"
-
-        android:layout_centerHorizontal="true" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/backleft"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/bil_BACKLEFT"
+        android:layout_gravity="center" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -80,7 +93,16 @@
 
         />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        android:id="@+id/statustekstonscstreen"
+        android:layout_below="@id/noredcar"
+        android:textSize="20dp"
+        android:textStyle="bold"
 
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
