@@ -30,11 +30,13 @@ import android.widget.ImageView;
 
 public class status extends AppCompatActivity {
 
-    final ImageView noredcar=(ImageView) findViewById(R.id.noredcar);
-    final ImageView driver_door=(ImageView) findViewById(R.id.driverdoor);
-    final ImageView front_passenger=(ImageView) findViewById(R.id.frontpassenger);
-    final ImageView back_left=(ImageView) findViewById(R.id.backleft);
-    final ImageView back_right=(ImageView) findViewById(R.id.backright);
+    ImageView noredcar;
+    ImageView driver_door;
+    ImageView front_passenger;
+    ImageView back_left;
+    ImageView back_right;
+
+
 
     //fjerner alle bildene som har "åpne" dører og etterlated bare det rene bildet
     public void everything(){
@@ -116,6 +118,13 @@ public class status extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        final ImageView noredcar=(ImageView) findViewById(R.id.noredcar);
+        final ImageView driver_door=(ImageView) findViewById(R.id.driverdoor);
+        final ImageView front_passenger=(ImageView) findViewById(R.id.frontpassenger);
+        final ImageView back_left=(ImageView) findViewById(R.id.backleft);
+        final ImageView back_right=(ImageView) findViewById(R.id.backright);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status);
 
