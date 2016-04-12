@@ -31,25 +31,9 @@ import android.widget.ImageView;
 public class status extends AppCompatActivity {
 
     ImageView noredcar;
-    //ImageView driver_door;
-    //ImageView front_passenger;
-    //ImageView back_left;
-    //ImageView back_right;
 
 
 
-    //fjerner alle bildene som har "åpne" dører og etterlated bare det rene bildet
-
-    /*
-    public void everything(){
-        driver_door.setVisibility(View.INVISIBLE);
-        front_passenger.setVisibility(View.INVISIBLE);
-        back_left.setVisibility(View.INVISIBLE);
-        back_right.setVisibility(View.INVISIBLE);
-        noredcar.setVisibility(View.INVISIBLE);
-    }
-
-    */
 
     //TODO prøver å sette opp notification her
     /*
@@ -92,6 +76,8 @@ public class status extends AppCompatActivity {
                 Log.e("Aquarium", "Already connected");
             }
             Toast.makeText(status.this, "Connection established", Toast.LENGTH_LONG).show();
+
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -138,6 +124,8 @@ public class status extends AppCompatActivity {
         final TextView statustekst = (TextView) findViewById(R.id.statustekstonscstreen);
         final TextView myLabel = (TextView) findViewById(R.id.btResult);
 
+        final TextView connornot2con= (TextView) findViewById(R.id.whoisconnected);
+
         //tekstfargene hvit
         statustekst.setTextColor(Color.WHITE);
         myLabel.setTextColor(Color.WHITE);
@@ -171,6 +159,12 @@ public class status extends AppCompatActivity {
                         public void run() {
                             String text = "Waiting for ";
                             myLabel.setText(text + device1.getName());
+
+                            connornot2con.setTextColor(Color.WHITE);
+                            connornot2con.setText("Connected with \n "+ device1.getName() );
+
+
+
                         }
 
                     });
@@ -225,31 +219,6 @@ public class status extends AppCompatActivity {
                                             Log.e("Aquarium", "Changing text to: " + data);
                                             myLabel.setText(data);
 
-                                            //Skal vise riktig bilde hvis dørene er låst/ulåst
-                                            //driver_door
-                                            /*
-                                            String nydata= data.toString();
-                                            if(nydata.equals("light on!")){
-                                                everything();
-                                                driver_door.setVisibility(View.VISIBLE);
-                                            }
-                                            if(nydata.equals("front_passenger")){
-                                                everything();
-                                                front_passenger.setVisibility(View.VISIBLE);
-                                            }
-                                            if(nydata.equals("back_left")){
-                                                everything();
-                                                back_left.setVisibility(View.VISIBLE);
-                                            }
-                                            if(nydata.equals("back_right")){
-                                                everything();
-                                                back_right.setVisibility(View.VISIBLE);
-                                            }
-                                            if(nydata.equals("secured")){
-                                                everything();
-                                                noredcar.setVisibility(View.VISIBLE);
-                                            }
-                                            */
                                         }
                                     });
                                     break;
