@@ -31,14 +31,16 @@ import android.widget.ImageView;
 public class status extends AppCompatActivity {
 
     ImageView noredcar;
-    ImageView driver_door;
-    ImageView front_passenger;
-    ImageView back_left;
-    ImageView back_right;
+    //ImageView driver_door;
+    //ImageView front_passenger;
+    //ImageView back_left;
+    //ImageView back_right;
 
 
 
     //fjerner alle bildene som har "åpne" dører og etterlated bare det rene bildet
+
+    /*
     public void everything(){
         driver_door.setVisibility(View.INVISIBLE);
         front_passenger.setVisibility(View.INVISIBLE);
@@ -46,6 +48,8 @@ public class status extends AppCompatActivity {
         back_right.setVisibility(View.INVISIBLE);
         noredcar.setVisibility(View.INVISIBLE);
     }
+
+    */
 
     //TODO prøver å sette opp notification her
     /*
@@ -119,11 +123,13 @@ public class status extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
         final ImageView noredcar=(ImageView) findViewById(R.id.noredcar);
-        final ImageView driver_door=(ImageView) findViewById(R.id.driverdoor);
-        final ImageView front_passenger=(ImageView) findViewById(R.id.frontpassenger);
-        final ImageView back_left=(ImageView) findViewById(R.id.backleft);
-        final ImageView back_right=(ImageView) findViewById(R.id.backright);
+        //final ImageView driver_door=(ImageView) findViewById(R.id.driverdoor);
+        //final ImageView front_passenger=(ImageView) findViewById(R.id.frontpassenger);
+        //final ImageView back_left=(ImageView) findViewById(R.id.backleft);
+        //final ImageView back_right=(ImageView) findViewById(R.id.backright);
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status);
@@ -185,6 +191,8 @@ public class status extends AppCompatActivity {
 
             public void run() {
 
+
+
                 //sendBtMsg(btMsg);
                 while (!Thread.currentThread().isInterrupted()) {
                     int bytesAvailable;
@@ -219,6 +227,7 @@ public class status extends AppCompatActivity {
 
                                             //Skal vise riktig bilde hvis dørene er låst/ulåst
                                             //driver_door
+                                            /*
                                             String nydata= data.toString();
                                             if(nydata.equals("light on!")){
                                                 everything();
@@ -240,6 +249,7 @@ public class status extends AppCompatActivity {
                                                 everything();
                                                 noredcar.setVisibility(View.VISIBLE);
                                             }
+                                            */
                                         }
                                     });
                                     break;
