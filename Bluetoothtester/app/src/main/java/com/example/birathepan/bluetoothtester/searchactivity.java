@@ -2,7 +2,6 @@ package com.example.birathepan.bluetoothtester;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -11,21 +10,16 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.io.IOException;
 import java.lang.reflect.Method;
-import java.sql.Connection;
 import java.util.Set;
 import java.util.UUID;
-import java.util.*;
 
 public class searchactivity extends AppCompatActivity {
 
@@ -134,7 +128,7 @@ public class searchactivity extends AppCompatActivity {
     private void discoverPairedDevices() {
         deviceListAdapter.clear();
         Set<BluetoothDevice> pairedDevices = btAdapter.getBondedDevices();
-        statusText.setText("Looking for paired devices...");
+        statusText.setText("Looking for devices...");
         if(pairedDevices.size()>0) {
             for (BluetoothDevice device: pairedDevices) {
                 String deviceName = device.getName();
@@ -142,7 +136,7 @@ public class searchactivity extends AppCompatActivity {
                 deviceListAdapter.add(deviceName + "\n" + deviceAddress);
                 deviceListAdapter.notifyDataSetChanged();
             }
-            statusText.setText("Found paired devices...");
+            statusText.setText("Found devices...");
         }
         else {
             statusText.setText("No paired devices found...");
@@ -157,7 +151,7 @@ public class searchactivity extends AppCompatActivity {
     private void discoverNonPairedDevices() {
         deviceListAdapter.clear();
         btAdapter.startDiscovery();
-        statusText.setText("Looking for unpaired devices...");
+        statusText.setText("Looking for devices...");
         bReceiver = new BroadcastReceiver() {
             public void onReceive(Context context, Intent intent) {
                 String action = intent.getAction();
@@ -170,7 +164,7 @@ public class searchactivity extends AppCompatActivity {
                     String deviceAddress = device.getAddress();
                     deviceListAdapter.add(deviceName + "\n" + deviceAddress);
                     deviceListAdapter.notifyDataSetChanged();
-                    statusText.setText("Found unpaired devices...");
+                    statusText.setText("Found devices...");
                 }
             }
         };

@@ -7,36 +7,27 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Vibrator;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.NotificationBuilderWithBuilderAccessor;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.NotificationCompat;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
-import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Set;
 import java.util.Timer;
-import java.util.TimerTask;
 import java.util.UUID;
-
-import android.graphics.Matrix;
-import android.widget.ImageView;
 
 public class status extends AppCompatActivity {
 
     ImageView noredcar;
     private Timer autoUpdate;
-
-
-
 
 
     //TODO prøver å sette opp notification her
@@ -114,13 +105,11 @@ public class status extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
         final ImageView noredcar=(ImageView) findViewById(R.id.noredcar);
         //final ImageView driver_door=(ImageView) findViewById(R.id.driverdoor);
         //final ImageView front_passenger=(ImageView) findViewById(R.id.frontpassenger);
         //final ImageView back_left=(ImageView) findViewById(R.id.backleft);
         //final ImageView back_right=(ImageView) findViewById(R.id.backright);
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status);
@@ -167,13 +156,8 @@ public class status extends AppCompatActivity {
 
                             connornot2con.setTextColor(Color.WHITE);
                             connornot2con.setText("Connected with \n "+ device1.getName() );
-
-
-
                         }
-
                     });
-
                     break;
                 }
             }
@@ -187,10 +171,7 @@ public class status extends AppCompatActivity {
                 //btMsg = msg;
             }
 
-
             public void run() {
-
-
 
                 //sendBtMsg(btMsg);
                 while (!Thread.currentThread().isInterrupted()) {
@@ -211,31 +192,40 @@ public class status extends AppCompatActivity {
                             for (int i = 0; i < bytesAvailable; i++) {
                                 byte b = packetBytes[i];
                                 if (b == delimiter) {
-                                    byte[] encodedBytes = new byte[readBufferPosition];
+                                   byte[] encodedBytes = new byte[readBufferPosition];
                                     System.arraycopy(readBuffer, 0, encodedBytes, 0, encodedBytes.length);
                                     final String data = new String(encodedBytes, "US-ASCII");
                                     readBufferPosition = 0;
+
 
                                     //The variable data now contains our full command
 
                                     //Her blir outputtet fra Pi-en skrevet
                                     handler.post(new Runnable() {
                                         public void run() {
-                                            Log.e("Aquarium", "Changing text to: " + data);
-                                            myLabel.setText(data);
+                                            //Log.e("Aquarium", "Changing text to: " + data);
+                                            // myLabel.setText(data);
 
+                                            JSONObject jsondata;
+                                            try {
+                                                jsondata = new JSONObject(data);
+                                                myLabel.setText(jsondata.toString());
+                                                //change_screen(jsondata);
+                                            }
+                                            catch (JSONException e) {
+                                                Log.e("Aquarium", "JSONExeption: tried to parse" + data);
+                                            }
                                         }
                                     });
                                     break;
-
 
                                 } else {
                                     Log.e("Aquarium", "pushing readBufferPosition forward");
                                     readBuffer[readBufferPosition++] = b;
                                 }
                             }
-
                         }
+
                     } catch (IOException e) {
                         // TODO Auto-generated catch block
                         handler.post(new Runnable() {
@@ -246,7 +236,6 @@ public class status extends AppCompatActivity {
                         });
                         e.printStackTrace();
                     }
-
                 }
             }
         }
@@ -256,6 +245,15 @@ public class status extends AppCompatActivity {
         connectToBt();
         (new Thread(new workerThread())).start();
 
+    }
+
+    private void change_screen(JSONObject data) {
+        decode_JSON();
+        //TODO skal endre statusskjerm ut fra data fra rp
+    }
+
+    private void decode_JSON() {
+        //TODO fiks json decoding av data fra rp
     }
 
     //TODO: Lage en funksjon som leser ping-meldinger fra Pi og svarer på
@@ -272,12 +270,4 @@ public class status extends AppCompatActivity {
         //getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-
-
-
-
-
-
-
-
 }
