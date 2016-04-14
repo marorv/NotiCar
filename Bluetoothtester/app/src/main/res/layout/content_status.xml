@@ -13,27 +13,6 @@
     android:background="@color/darkgrey"
     >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tekst"
-        android:id="@+id/btResult"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Connected or disconnected"
-        android:id="@+id/whoisconnected"
-        android:layout_above="@+id/noredcar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="57dp" />
 
     <!-- Car images -->
 
@@ -80,6 +59,25 @@
         android:layout_alignParentEnd="true"
         android:src="@drawable/bil_backleft"
         android:layout_gravity="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tekst"
+        android:id="@+id/btResult"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Connected or disconnected"
+        android:id="@+id/whoisconnected"
+        android:layout_above="@+id/noredcar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="57dp" />
 
     <TextView
         android:layout_width="wrap_content"

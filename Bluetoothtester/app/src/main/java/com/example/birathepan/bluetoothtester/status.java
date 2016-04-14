@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,9 +27,12 @@ import java.util.UUID;
 
 public class status extends AppCompatActivity {
 
-    ImageView noredcar;
     private Timer autoUpdate;
-
+    ImageView noredcar;
+    ImageView driver;
+    ImageView passenger;
+    ImageView back_left;
+    ImageView back_right;
 
     //TODO prøver å sette opp notification her
 
@@ -37,10 +41,7 @@ public class status extends AppCompatActivity {
             .setSmallIcon(R.drawable.noticar)
             .setContentTitle("Tittel")
             .setContentText("tekst her");
-*/
-
-
-
+    */
 
     //Vibrasjon
     /*
@@ -49,7 +50,6 @@ public class status extends AppCompatActivity {
         vibrator.vibrate(1000); //10 seconds
     }
     */
-
 
 
     // Maren`s kode :
@@ -72,9 +72,6 @@ public class status extends AppCompatActivity {
                 Log.e("Aquarium", "Already connected");
             }
             Toast.makeText(status.this, "Connection established", Toast.LENGTH_LONG).show();
-
-
-
         } catch (IOException e) {
             e.printStackTrace();
             Log.e("Aquarium", "Failed to connect. Retrying");
@@ -87,7 +84,6 @@ public class status extends AppCompatActivity {
         //UUID uuid = UUID.fromString("94f39d29-7d6d-437d-973b-fba39e49d4ee"); //Standard SerialPortService ID
 
         try {
-
             String msg = msg2send;
 
             OutputStream mmOutputStream = mmSocket.getOutputStream();
@@ -99,23 +95,27 @@ public class status extends AppCompatActivity {
             Log.e("Aquarium", "Failed to send msg");
             sendBtMsg(msg2send);
         }
-
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        final ImageView noredcar=(ImageView) findViewById(R.id.noredcar);
-        //final ImageView driver_door=(ImageView) findViewById(R.id.driverdoor);
-        //final ImageView front_passenger=(ImageView) findViewById(R.id.frontpassenger);
-        //final ImageView back_left=(ImageView) findViewById(R.id.backleft);
-        //final ImageView back_right=(ImageView) findViewById(R.id.backright);
+        noredcar=(ImageView) findViewById(R.id.noredcar);
+        noredcar.setVisibility(View.VISIBLE);
+        driver=(ImageView) findViewById(R.id.driver);
+        driver.setVisibility(View.GONE);
+        passenger=(ImageView) findViewById(R.id.passenger);
+        passenger.setVisibility(View.GONE);
+        back_left=(ImageView) findViewById(R.id.backleft);
+        back_left.setVisibility(View.GONE);
+        back_right=(ImageView) findViewById(R.id.backright);
+        back_right.setVisibility(View.GONE);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status);
 
         final Handler handler = new Handler();
-        final TextView statustekst = (TextView) findViewById(R.id.statustekstonscstreen);
+        TextView statustekst = (TextView) findViewById(R.id.statustekstonscstreen);
         final TextView myLabel = (TextView) findViewById(R.id.btResult);
 
         final TextView connornot2con= (TextView) findViewById(R.id.whoisconnected);
@@ -178,7 +178,6 @@ public class status extends AppCompatActivity {
                     int bytesAvailable;
 
                     try {
-
                         final InputStream mmInputStream;
                         mmInputStream = mmSocket.getInputStream();
                         bytesAvailable = mmInputStream.available();
@@ -205,12 +204,11 @@ public class status extends AppCompatActivity {
                                         public void run() {
                                             //Log.e("Aquarium", "Changing text to: " + data);
                                             // myLabel.setText(data);
-
                                             JSONObject jsondata;
                                             try {
                                                 jsondata = new JSONObject(data);
                                                 myLabel.setText(jsondata.toString());
-                                                //change_screen(jsondata);
+                                                change_screen(jsondata);
                                             }
                                             catch (JSONException e) {
                                                 Log.e("Aquarium", "JSONExeption: tried to parse" + data);
@@ -225,7 +223,6 @@ public class status extends AppCompatActivity {
                                 }
                             }
                         }
-
                     } catch (IOException e) {
                         // TODO Auto-generated catch block
                         handler.post(new Runnable() {
@@ -244,17 +241,40 @@ public class status extends AppCompatActivity {
 
         connectToBt();
         (new Thread(new workerThread())).start();
-
     }
 
     private void change_screen(JSONObject data) {
-        decode_JSON();
-        //TODO skal endre statusskjerm ut fra data fra rp
+        show_locked_car();
+        try {
+            Boolean driverdoor = Boolean.valueOf(data.getString("driver"));
+            if(driverdoor.equals(true)){
+                driver.setVisibility(View.VISIBLE);
+            }
+            Boolean passengerdoor = Boolean.valueOf(data.getString("passenger"));
+            if(passengerdoor.equals(true)){
+                passenger.setVisibility(View.VISIBLE);
+            }
+            Boolean backrightdoor = Boolean.valueOf(data.getString("backright"));
+            if(backrightdoor.equals(true)){
+                back_right.setVisibility(View.VISIBLE);
+            }
+            Boolean backleftdoor = Boolean.valueOf(data.getString("backleft"));
+            if(backleftdoor.equals(true)){
+                back_left.setVisibility(View.VISIBLE);
+            }
+        } catch (JSONException e) {
+            Log.e("Aquarium", "JSONExeption: tried to decode");
+        }
     }
 
-    private void decode_JSON() {
-        //TODO fiks json decoding av data fra rp
+    private void show_locked_car() {
+        noredcar.setVisibility(View.VISIBLE);
+        driver.setVisibility(View.INVISIBLE);
+        passenger.setVisibility(View.INVISIBLE);
+        back_right.setVisibility(View.INVISIBLE);
+        back_left.setVisibility(View.INVISIBLE);
     }
+
 
     //TODO: Lage en funksjon som leser ping-meldinger fra Pi og svarer på
     //      disse for å bekrefte status som tilkoblet. Brukeren trenger
