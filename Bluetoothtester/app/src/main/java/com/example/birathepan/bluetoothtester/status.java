@@ -23,6 +23,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.UUID;
 
 import android.graphics.Matrix;
@@ -31,17 +33,20 @@ import android.widget.ImageView;
 public class status extends AppCompatActivity {
 
     ImageView noredcar;
+    private Timer autoUpdate;
+
 
 
 
 
     //TODO prøver å sette opp notification her
+
     /*
     NotificationCompat.Builder buider= new NotificationCompat.Builder(this)
             .setSmallIcon(R.drawable.noticar)
             .setContentTitle("Tittel")
             .setContentText("tekst her");
-    */
+*/
 
 
 
