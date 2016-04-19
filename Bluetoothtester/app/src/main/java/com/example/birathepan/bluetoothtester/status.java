@@ -28,7 +28,7 @@ import java.util.UUID;
 public class status extends AppCompatActivity {
 
     private Timer autoUpdate;
-    ImageView noredcar;
+    ImageView laast;
     ImageView driver;
     ImageView passenger;
     ImageView back_left;
@@ -99,9 +99,13 @@ public class status extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_status);
 
-        noredcar=(ImageView) findViewById(R.id.noredcar);
-        noredcar.setVisibility(View.VISIBLE);
+        //noredcar=(ImageView) findViewById(R.id.noredcar);
+        //noredcar.setVisibility(View.VISIBLE);
+        laast=(ImageView) findViewById(R.id.bil_laast);
+        laast.setVisibility(View.VISIBLE);
         driver=(ImageView) findViewById(R.id.driver);
         driver.setVisibility(View.GONE);
         passenger=(ImageView) findViewById(R.id.passenger);
@@ -111,8 +115,7 @@ public class status extends AppCompatActivity {
         back_right=(ImageView) findViewById(R.id.backright);
         back_right.setVisibility(View.GONE);
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_status);
+
 
         final Handler handler = new Handler();
         TextView statustekst = (TextView) findViewById(R.id.statustekstonscstreen);
@@ -268,7 +271,7 @@ public class status extends AppCompatActivity {
     }
 
     private void show_locked_car() {
-        noredcar.setVisibility(View.VISIBLE);
+        laast.setVisibility(View.VISIBLE);
         driver.setVisibility(View.INVISIBLE);
         passenger.setVisibility(View.INVISIBLE);
         back_right.setVisibility(View.INVISIBLE);

@@ -38,11 +38,6 @@ public class searchactivity extends AppCompatActivity {
         });
     }
 
-
-
-
-
-
     //bratti test
     BluetoothSocket mmSocket;
     UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb"); //Standard SerialPortService ID
@@ -58,8 +53,6 @@ public class searchactivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
 
         setContentView(R.layout.activity_searchactivity);
         statusText = (TextView) findViewById(R.id.statusText);
@@ -83,15 +76,6 @@ public class searchactivity extends AppCompatActivity {
                 String address= object.substring((object.length()-17));
                 device= btAdapter.getRemoteDevice(address);
                 connect_to_device(device);
-
-
-
-
-
-
-
-
-
 
                 // Går til neste activity --> vise status
                 startActivity(new Intent(getApplicationContext(), status.class));
@@ -179,18 +163,6 @@ public class searchactivity extends AppCompatActivity {
         btAdapter.cancelDiscovery();
         unregisterReceiver(bReceiver);
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 

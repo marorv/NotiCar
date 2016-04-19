@@ -20,7 +20,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/noredcar"
+        android:id="@+id/bil_laast"
         android:src="@drawable/bil_laast"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
