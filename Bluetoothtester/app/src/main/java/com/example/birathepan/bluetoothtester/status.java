@@ -282,6 +282,7 @@ public class status extends AppCompatActivity {
         passenger.setVisibility(View.INVISIBLE);
         back_right.setVisibility(View.INVISIBLE);
         back_left.setVisibility(View.INVISIBLE);
+        statustekst.setText("CAR CLOSED");
     }
 
 
