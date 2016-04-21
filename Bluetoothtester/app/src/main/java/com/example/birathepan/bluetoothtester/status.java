@@ -185,6 +185,11 @@ public class status extends AppCompatActivity {
                         mmInputStream = mmSocket.getInputStream();
                         bytesAvailable = mmInputStream.available();
                         if (bytesAvailable > 0) {
+                            //Something received, answer the Pi
+                            final OutputStream mmOutputStream;
+                            mmOutputStream = mmSocket.getOutputStream();
+                            mmOutputStream.write("ACK".getBytes());
+                            mmOutputStream.flush();
 
                             byte[] packetBytes = new byte[bytesAvailable];
                             Log.e("Aquarium recv bt", "bytes available");
@@ -205,8 +210,6 @@ public class status extends AppCompatActivity {
                                     //Her blir outputtet fra Pi-en skrevet
                                     handler.post(new Runnable() {
                                         public void run() {
-                                            //Log.e("Aquarium", "Changing text to: " + data);
-                                            // myLabel.setText(data);
                                             JSONObject jsondata;
                                             try {
                                                 jsondata = new JSONObject(data);
@@ -227,7 +230,7 @@ public class status extends AppCompatActivity {
                             }
                         }
                     } catch (IOException e) {
-                        // TODO Auto-generated catch block
+
                         handler.post(new Runnable() {
                             public void run() {
                                 final String text = "Failed to connect";
@@ -265,8 +268,12 @@ public class status extends AppCompatActivity {
             if(backleftdoor.equals(true)){
                 back_left.setVisibility(View.VISIBLE);
             }
+            Boolean connected = Boolean.valueOf(data.getString("connect"));
+            if(connected.equals(true)){
+                //TODO: Notify user here
+            }
         } catch (JSONException e) {
-            Log.e("Aquarium", "JSONExeption: tried to decode");
+            Log.e("Aquarium", "JSONExeption: failed to decode");
         }
     }
 
@@ -277,13 +284,6 @@ public class status extends AppCompatActivity {
         back_right.setVisibility(View.INVISIBLE);
         back_left.setVisibility(View.INVISIBLE);
     }
-
-
-    //TODO: Lage en funksjon som leser ping-meldinger fra Pi og svarer på
-    //      disse for å bekrefte status som tilkoblet. Brukeren trenger
-    //      ikke se disse, men de bør loggføres.
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
