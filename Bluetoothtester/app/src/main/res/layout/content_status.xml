@@ -60,10 +60,11 @@
         android:src="@drawable/bil_backleft"
         android:layout_gravity="center" />
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tekst"
+        android:text=""
         android:id="@+id/btResult"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
@@ -75,31 +76,19 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Connected or disconnected"
         android:id="@+id/whoisconnected"
-        android:layout_above="@+id/noredcar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="57dp" />
+        android:layout_marginTop="51dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/Status"
-        android:id="@+id/status"
-        android:layout_below="@+id/statustekstonscstreen"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-
-        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Status"
         android:id="@+id/statustekstonscstreen"
-        android:layout_below="@id/noredcar"
         android:textSize="20dp"
         android:textStyle="bold"
-
+        android:layout_above="@+id/btResult"
         android:layout_centerHorizontal="true" />
 
 

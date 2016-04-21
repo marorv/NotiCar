@@ -34,6 +34,10 @@ public class status extends AppCompatActivity {
     ImageView back_left;
     ImageView back_right;
 
+    TextView statustekst;
+    TextView myLabel;
+    TextView connornot2con;
+
     //TODO prøver å sette opp notification her
 
     /*
@@ -60,6 +64,7 @@ public class status extends AppCompatActivity {
     //Dette er EOL-symbolet!!! Hvis ikke linja slutter med "!" venter den på mer!
     final byte delimiter = 33;
     int readBufferPosition = 0;
+
 
     public void connectToBt(){
         try {
@@ -102,8 +107,6 @@ public class status extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status);
 
-        //noredcar=(ImageView) findViewById(R.id.noredcar);
-        //noredcar.setVisibility(View.VISIBLE);
         laast=(ImageView) findViewById(R.id.bil_laast);
         laast.setVisibility(View.VISIBLE);
         driver=(ImageView) findViewById(R.id.driver);
@@ -115,17 +118,14 @@ public class status extends AppCompatActivity {
         back_right=(ImageView) findViewById(R.id.backright);
         back_right.setVisibility(View.GONE);
 
-
-
         final Handler handler = new Handler();
-        TextView statustekst = (TextView) findViewById(R.id.statustekstonscstreen);
-        final TextView myLabel = (TextView) findViewById(R.id.btResult);
-
-        final TextView connornot2con= (TextView) findViewById(R.id.whoisconnected);
+        statustekst = (TextView) findViewById(R.id.statustekstonscstreen);
+        //myLabel = (TextView) findViewById(R.id.btResult);
+        connornot2con= (TextView) findViewById(R.id.whoisconnected);
 
         //tekstfargene hvit
         statustekst.setTextColor(Color.WHITE);
-        myLabel.setTextColor(Color.WHITE);
+        //myLabel.setTextColor(Color.WHITE);
 
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
@@ -154,8 +154,8 @@ public class status extends AppCompatActivity {
 
                     handler.post(new Runnable() {
                         public void run() {
-                            String text = "Waiting for ";
-                            myLabel.setText(text + device1.getName());
+                            //String text = "Waiting for ";
+                            //myLabel.setText(text + device1.getName());
 
                             connornot2con.setTextColor(Color.WHITE);
                             connornot2con.setText("Connected with \n "+ device1.getName() );
@@ -179,7 +179,6 @@ public class status extends AppCompatActivity {
                 //sendBtMsg(btMsg);
                 while (!Thread.currentThread().isInterrupted()) {
                     int bytesAvailable;
-
                     try {
                         final InputStream mmInputStream;
                         mmInputStream = mmSocket.getInputStream();
@@ -204,7 +203,6 @@ public class status extends AppCompatActivity {
                                     final String data = new String(encodedBytes, "US-ASCII");
                                     readBufferPosition = 0;
 
-
                                     //The variable data now contains our full command
 
                                     //Her blir outputtet fra Pi-en skrevet
@@ -213,7 +211,7 @@ public class status extends AppCompatActivity {
                                             JSONObject jsondata;
                                             try {
                                                 jsondata = new JSONObject(data);
-                                                myLabel.setText(jsondata.toString());
+                                                //myLabel.setText(jsondata.toString());
                                                 change_screen(jsondata);
                                             }
                                             catch (JSONException e) {
@@ -234,7 +232,7 @@ public class status extends AppCompatActivity {
                         handler.post(new Runnable() {
                             public void run() {
                                 final String text = "Failed to connect";
-                                myLabel.setText(text);
+                                //myLabel.setText(text);
                             }
                         });
                         e.printStackTrace();
@@ -251,22 +249,30 @@ public class status extends AppCompatActivity {
 
     private void change_screen(JSONObject data) {
         show_locked_car();
+        boolean open = false;
         try {
             Boolean driverdoor = Boolean.valueOf(data.getString("driver"));
             if(driverdoor.equals(true)){
                 driver.setVisibility(View.VISIBLE);
+                open = true;
             }
             Boolean passengerdoor = Boolean.valueOf(data.getString("passenger"));
             if(passengerdoor.equals(true)){
                 passenger.setVisibility(View.VISIBLE);
+                open = true;
             }
             Boolean backrightdoor = Boolean.valueOf(data.getString("backright"));
             if(backrightdoor.equals(true)){
                 back_right.setVisibility(View.VISIBLE);
+                open = true;
             }
             Boolean backleftdoor = Boolean.valueOf(data.getString("backleft"));
             if(backleftdoor.equals(true)){
                 back_left.setVisibility(View.VISIBLE);
+                open = true;
+            }
+            if(open) {
+                statustekst.setText("CAR OPEN");
             }
             Boolean connected = Boolean.valueOf(data.getString("connect"));
             if(connected.equals(true)){
@@ -283,6 +289,7 @@ public class status extends AppCompatActivity {
         passenger.setVisibility(View.INVISIBLE);
         back_right.setVisibility(View.INVISIBLE);
         back_left.setVisibility(View.INVISIBLE);
+        statustekst.setText("CAR CLOSED");
     }
 
     @Override
