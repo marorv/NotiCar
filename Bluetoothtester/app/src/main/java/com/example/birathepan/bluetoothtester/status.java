@@ -277,6 +277,7 @@ public class status extends AppCompatActivity {
             Boolean connected = Boolean.valueOf(data.getString("connect"));
             if(connected.equals(true)){
                 //TODO: Notify user here
+                Toast.makeText(status.this, "Lost connection!", Toast.LENGTH_LONG).show();
             }
         } catch (JSONException e) {
             Log.e("Aquarium", "JSONExeption: failed to decode");
