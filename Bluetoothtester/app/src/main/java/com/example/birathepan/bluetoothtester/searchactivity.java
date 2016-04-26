@@ -150,9 +150,24 @@ public class searchactivity extends AppCompatActivity {
                     deviceListAdapter.notifyDataSetChanged();
                     statusText.setText("Found devices...");
                 }
+                else if (BluetoothDevice.ACTION_ACL_CONNECTED.equals(action)) {
+                    //Device is now connected
+                }
+                else if (BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED.equals(action)) {
+                    //Device is about to disconnect
+                }
+                else if (BluetoothDevice.ACTION_ACL_DISCONNECTED.equals(action)) {
+                    statusText.setText("Device Disconnected");
+                }
             }
         };
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+        IntentFilter filter1 = new IntentFilter(BluetoothDevice.ACTION_ACL_CONNECTED);
+        IntentFilter filter2 = new IntentFilter(BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED);
+        IntentFilter filter3 = new IntentFilter(BluetoothDevice.ACTION_ACL_DISCONNECTED);
+        this.registerReceiver(bReceiver, filter1);
+        this.registerReceiver(bReceiver, filter2);
+        this.registerReceiver(bReceiver, filter3);
         registerReceiver(bReceiver, filter);
     }
 
